@@ -13,7 +13,7 @@ public class gameFrame extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1626493072817436258L;
-	public JPanel p1,p2;
+	public JPanel panel_1,panel_2;
 	public JButton[] mapButton=new JButton[40];
 	public JButton roll;
 	public JButton attack;
@@ -32,6 +32,7 @@ public class gameFrame extends JFrame {
 	public boolean isServantConfirm=false;
 	public static Icon iconroll = new ImageIcon(gameFrame.class.getResource("roll.png"));
 	public static Icon iconattack = new ImageIcon(gameFrame.class.getResource("attack.png"));
+	public static Icon iconact1 = new ImageIcon(gameFrame.class.getResource("act1.png"));
 	JComboBox<String> jc1 = new JComboBox<>(new MyComboBox());
 	JComboBox<String> jc2 = new JComboBox<>(new MyComboBox());
 	public int p1choice=1;
@@ -254,19 +255,45 @@ public class gameFrame extends JFrame {
 		for(int i=0;i<40;i++) {
 			if(m.terrain[i]==-1) {
 				//黑色为障碍格,-1
+				mapButton[i].setIcon(null);
 				mapButton[i].setBackground(Color.BLACK);
 			}else if(m.terrain[i]==0) {
 				//白色为可行格,0
+				mapButton[i].setIcon(null);
 				mapButton[i].setBackground(Color.WHITE);
 			}else if(m.terrain[i]==1) {
 				//蓝色为p1,1
 				mapButton[i].setBackground(Color.BLUE);
-				//jb[i].setIcon(image);
+				setServantIcon(mapButton[i],p1);
 			}else if(m.terrain[i]==2) {
 				//红色为p2,2
+				setServantIcon(mapButton[i],p2);
 				mapButton[i].setBackground(Color.RED);
 			}
 		}
+	}
+	
+	/*
+	 * 设置两名玩家的从者图标
+	 */
+	private void setServantIcon(JButton a,Player pla) {
+		if(pla.servant==1) {
+			
+		}else if(pla.servant==2) {
+			a.setIcon(iconact1);
+		}else if(pla.servant==3) {
+			
+		}else if(pla.servant==4) {
+			
+		}else if(pla.servant==5) {
+			
+		}else if(pla.servant==6) {
+			
+		}
+		
+		//待补充
+		
+		
 	}
 
 }
