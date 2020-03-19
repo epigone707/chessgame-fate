@@ -165,7 +165,6 @@ public class gameFrame extends JFrame {
 	 * 游戏界面
 	 */
 	public void gamePlayPane() {
-		
 		Container c=getContentPane();
 		setBounds(400,50,900,700);//参数为x,y,width,height
 		label.setBounds(0, 0, this.getWidth(), this.getHeight());
@@ -241,10 +240,7 @@ public class gameFrame extends JFrame {
 	    west.setEnabled(false);
 		c.add(p1,gbc_1);
 		c.add(p2,gbc_2);
-		
-		
 		setTitle("游戏界面");
-		
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	}
