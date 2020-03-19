@@ -2,7 +2,6 @@ package com.gyf;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.net.URL;
 
 import javax.swing.*;
 
@@ -33,6 +32,8 @@ public class gameFrame extends JFrame {
 	public static Icon iconroll = new ImageIcon(gameFrame.class.getResource("roll.png"));
 	public static Icon iconattack = new ImageIcon(gameFrame.class.getResource("attack.png"));
 	public static Icon iconact1 = new ImageIcon(gameFrame.class.getResource("act1.png"));
+	public static Icon iconbackground = new ImageIcon(gameFrame.class.getResource("background.png"));
+	JLabel label = new JLabel(iconbackground);// 把背景图片显示在一个标签里面
 	JComboBox<String> jc1 = new JComboBox<>(new MyComboBox());
 	JComboBox<String> jc2 = new JComboBox<>(new MyComboBox());
 	public int p1choice=1;
@@ -57,9 +58,10 @@ public class gameFrame extends JFrame {
 			}
 		}
 		getContentPane().removeAll();
-		//invalidate(); // Changed here
+		//repaint(); 
+		invalidate(); // Changed here
 		gamePlayPane();//进入游戏界面
-        repaint(); // 
+        
 	}
 
 	
@@ -68,11 +70,6 @@ public class gameFrame extends JFrame {
 	 */
 	public void gameSetPane() {
 		Container c=getContentPane();
-		setSize(new Dimension(800, 800));
-		setVisible(true);
-		setTitle("角色选择");
-		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		c.setLayout(new FlowLayout());
 		JLabel jl1 = new JLabel("玩家1请选择从者:");
 		JLabel jl2 = new JLabel("玩家2请选择从者:");
 		servantConfirm=new JButton("确认从者选择");
@@ -137,18 +134,41 @@ public class gameFrame extends JFrame {
 				isServantConfirm=true;
 			}
 		});
+		setBounds(400,200,800,500);//参数为x,y,width,height
+		setVisible(true);
+		setTitle("角色选择");
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		c.setLayout(null);
+		jl1.setBounds(300, 200, 100, 30);//参数为x,y,width,height
+		jc1.setBounds(400, 200, 100, 30);
+		jl2.setBounds(300, 250, 100, 30);
+		jc2.setBounds(400, 250, 100, 30);
+		servantConfirm.setBounds(300, 350, 200, 30);
 		c.add(jl1);
 		c.add(jc1);
 		c.add(jl2);
 		c.add(jc2);
 		c.add(servantConfirm);
+		
+		// 把标签的大小位置设置为图片刚好填充整个面板
+		label.setBounds(0, 0, this.getWidth(), this.getHeight());
+		// 把内容窗格转化为JPanel，否则不能用方法setOpaque()来使内容窗格透明
+		JPanel imagePanel = (JPanel) this.getContentPane();
+		//使内容窗格透明
+		imagePanel.setOpaque(false);
+		// 把背景图片添加到分层窗格的最底层作为背景
+		this.getLayeredPane().add(label, new Integer(Integer.MIN_VALUE));
+		
 	}
 	
 	/*
 	 * 游戏界面
 	 */
 	public void gamePlayPane() {
+		
 		Container c=getContentPane();
+		setBounds(400,50,900,700);//参数为x,y,width,height
+		label.setBounds(0, 0, this.getWidth(), this.getHeight());
 		c.setLayout(new GridBagLayout());
 		final GridBagConstraints gbc_1=new GridBagConstraints();//面板1=地图
 		gbc_1.gridy=0;
@@ -221,8 +241,10 @@ public class gameFrame extends JFrame {
 	    west.setEnabled(false);
 		c.add(p1,gbc_1);
 		c.add(p2,gbc_2);
+		
+		
 		setTitle("游戏界面");
-		setSize(800, 800);
+		
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	}
