@@ -1,8 +1,6 @@
 package com.gyf;
 
 
-
-
 public class Game {
 	
 	public Player p1;
@@ -18,6 +16,7 @@ public class Game {
 		p2=new Player(2,gf.p2choice);
 		myMap=new Map(1);//当前地图设置为地图1
 		nowply=p1;//当前玩家为P1玩家
+		
 		gf.refrFrame(nowply,p1,p2,myMap);//刷新地图面板
 	}
 
@@ -50,8 +49,10 @@ public class Game {
 			}
 		}
 		if(p1.health==0) {
+			Sound.win(p2.servant);//播放win语音
 			System.out.println("gameover！"+"玩家2获得胜利！");
 		}else {
+			Sound.win(p1.servant);//播放win语音
 			System.out.println("gameover！"+"玩家1获得胜利！");
 		}
 	}
@@ -62,6 +63,7 @@ public class Game {
 	public void playerTurn(Player pl) {
 		//System.out.println("X:"+p1.getPositionX()+"Y:"+p1.getPositionY());
 		System.out.println("玩家"+pl.name+"的小回合开始");//开始当前玩家的小回合
+		Sound.speak(pl.servant);//播放speak语音
 		gf.roll.setEnabled(true);//将roll按钮设置为可选
 		
 		//等待玩家按下roll按钮

@@ -29,10 +29,10 @@ public class gameFrame extends JFrame {
 	public boolean isSouth=false;
 	public boolean isWest=false;
 	public boolean isServantConfirm=false;
-	public static Icon iconroll = new ImageIcon(gameFrame.class.getResource("roll.png"));
-	public static Icon iconattack = new ImageIcon(gameFrame.class.getResource("attack.png"));
-	public static Icon iconact1 = new ImageIcon(gameFrame.class.getResource("act1.png"));
-	public static Icon iconbackground = new ImageIcon(gameFrame.class.getResource("background.png"));
+	public static Icon iconroll = new ImageIcon("image/roll.png");
+	public static Icon iconattack = new ImageIcon("image/attack.png");
+	public static Icon iconact1 = new ImageIcon("image/act1.png");
+	public static Icon iconbackground = new ImageIcon("image/background.png");
 	JLabel label = new JLabel(iconbackground);// 把背景图片显示在一个标签里面
 	JComboBox<String> jc1 = new JComboBox<>(new MyComboBox());
 	JComboBox<String> jc2 = new JComboBox<>(new MyComboBox());
@@ -46,6 +46,7 @@ public class gameFrame extends JFrame {
 	 * 构造方法
 	 */
 	public gameFrame() {
+		Sound.backgroud_1();// 播放背景音乐1
 		gameSetPane();//进入从者选择界面
 		while(true) {
 			if(isServantConfirm) {
@@ -61,7 +62,8 @@ public class gameFrame extends JFrame {
 		//repaint(); 
 		invalidate(); // Changed here
 		gamePlayPane();//进入游戏界面
-        
+        Sound.bg_1.stop();//停止播放背景音乐1
+        Sound.backgroud_2();//播放背景音乐2
 	}
 
 	
@@ -77,26 +79,32 @@ public class gameFrame extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if(jc1.getSelectedItem()=="卫宫") {
 	    			System.out.println("玩家1选择了【卫宫】");
+	    			Sound.selected(1);//播放selected语音
 	    			p1choice=1;
 	    		}
 	    		else if(jc1.getSelectedItem()=="阿尔托莉雅") {
 	    			System.out.println("玩家1选择了【阿尔托莉雅】");
+	    			Sound.selected(2);//播放selected语音
 	    			p1choice=2;
 	    		}
 	    		else if(jc1.getSelectedItem()=="赫拉克勒斯") {
 	    			System.out.println("玩家1选择了【赫拉克勒斯】");
+	    			Sound.selected(3);//播放selected语音
 	    			p1choice=3;
 	    		}
 	    		else if(jc1.getSelectedItem()=="吉尔伽美什") {
 	    			System.out.println("玩家1选择了【吉尔伽美什】");
+	    			Sound.selected(4);//播放selected语音
 	    			p1choice=4;
 	    		}
 	    		else if(jc1.getSelectedItem()=="库丘林") {
 	    			System.out.println("玩家1选择了【库丘林】");
+	    			Sound.selected(5);//播放selected语音
 	    			p1choice=5;
 	    		}
 	    		else if(jc1.getSelectedItem()=="美杜莎") {
 	    			System.out.println("玩家1选择了【美杜莎】");
+	    			Sound.selected(6);//播放selected语音
 	    			p1choice=6;
 	    		}
 			}
@@ -105,26 +113,32 @@ public class gameFrame extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if(jc2.getSelectedItem()=="卫宫") {
 	    			System.out.println("玩家2选择了【卫宫】");
+	    			Sound.selected(1);//播放selected语音
 	    			p2choice=1;
 	    		}
 	    		else if(jc2.getSelectedItem()=="阿尔托莉雅") {
 	    			System.out.println("玩家2选择了【阿尔托莉雅】");
+	    			Sound.selected(2);//播放selected语音
 	    			p2choice=2;
 	    		}
 	    		else if(jc2.getSelectedItem()=="赫拉克勒斯") {
 	    			System.out.println("玩家2选择了【赫拉克勒斯】");
+	    			Sound.selected(3);//播放selected语音
 	    			p2choice=3;
 	    		}
 	    		else if(jc2.getSelectedItem()=="吉尔伽美什") {
 	    			System.out.println("玩家2选择了【吉尔伽美什】");
+	    			Sound.selected(4);//播放selected语音
 	    			p2choice=4;
 	    		}
 	    		else if(jc2.getSelectedItem()=="库丘林") {
 	    			System.out.println("玩家2选择了【库丘林】");
+	    			Sound.selected(5);//播放selected语音
 	    			p2choice=5;
 	    		}
 	    		else if(jc2.getSelectedItem()=="美杜莎") {
 	    			System.out.println("玩家2选择了【美杜莎】");
+	    			Sound.selected(6);//播放selected语音
 	    			p2choice=6;
 	    		}
 			}
