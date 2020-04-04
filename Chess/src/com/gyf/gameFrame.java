@@ -38,7 +38,7 @@ public class gameFrame extends JFrame {
 	JComboBox<String> jc2 = new JComboBox<>(new MyComboBox());
 	public int p1choice=1;
 	public int p2choice=2;
-	
+
 
 
 
@@ -62,11 +62,11 @@ public class gameFrame extends JFrame {
 		//repaint(); 
 		invalidate(); // Changed here
 		gamePlayPane();//进入游戏界面
-        Sound.bg_1.stop();//停止播放背景音乐1
-        Sound.backgroud_2();//播放背景音乐2
+		Sound.bg_1.stop();//停止播放背景音乐1
+		Sound.backgroud_2();//播放背景音乐2
 	}
 
-	
+
 	/*
 	 * 从者选择界面
 	 */
@@ -78,69 +78,49 @@ public class gameFrame extends JFrame {
 		jc1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(jc1.getSelectedItem()=="卫宫") {
-	    			System.out.println("玩家1选择了【卫宫】");
-	    			Sound.selected(1);//播放selected语音
-	    			p1choice=1;
-	    		}
-	    		else if(jc1.getSelectedItem()=="阿尔托莉雅") {
-	    			System.out.println("玩家1选择了【阿尔托莉雅】");
-	    			Sound.selected(2);//播放selected语音
-	    			p1choice=2;
-	    		}
-	    		else if(jc1.getSelectedItem()=="赫拉克勒斯") {
-	    			System.out.println("玩家1选择了【赫拉克勒斯】");
-	    			Sound.selected(3);//播放selected语音
-	    			p1choice=3;
-	    		}
-	    		else if(jc1.getSelectedItem()=="吉尔伽美什") {
-	    			System.out.println("玩家1选择了【吉尔伽美什】");
-	    			Sound.selected(4);//播放selected语音
-	    			p1choice=4;
-	    		}
-	    		else if(jc1.getSelectedItem()=="库丘林") {
-	    			System.out.println("玩家1选择了【库丘林】");
-	    			Sound.selected(5);//播放selected语音
-	    			p1choice=5;
-	    		}
-	    		else if(jc1.getSelectedItem()=="美杜莎") {
-	    			System.out.println("玩家1选择了【美杜莎】");
-	    			Sound.selected(6);//播放selected语音
-	    			p1choice=6;
-	    		}
+					p1choice=1;
+				}
+				else if(jc1.getSelectedItem()=="阿尔托莉雅") {
+					p1choice=2;
+				}
+				else if(jc1.getSelectedItem()=="赫拉克勒斯") {
+					p1choice=3;
+				}
+				else if(jc1.getSelectedItem()=="吉尔伽美什") {
+					p1choice=4;
+				}
+				else if(jc1.getSelectedItem()=="库丘林") {
+					p1choice=5;
+				}
+				else{
+					p1choice=6;
+				}
+				System.out.println("玩家1选择了【"+jc1.getSelectedItem()+"】");
+				Sound.selected(p1choice);//播放selected语音
 			}
 		});
 		jc2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(jc2.getSelectedItem()=="卫宫") {
-	    			System.out.println("玩家2选择了【卫宫】");
-	    			Sound.selected(1);//播放selected语音
-	    			p2choice=1;
-	    		}
-	    		else if(jc2.getSelectedItem()=="阿尔托莉雅") {
-	    			System.out.println("玩家2选择了【阿尔托莉雅】");
-	    			Sound.selected(2);//播放selected语音
-	    			p2choice=2;
-	    		}
-	    		else if(jc2.getSelectedItem()=="赫拉克勒斯") {
-	    			System.out.println("玩家2选择了【赫拉克勒斯】");
-	    			Sound.selected(3);//播放selected语音
-	    			p2choice=3;
-	    		}
-	    		else if(jc2.getSelectedItem()=="吉尔伽美什") {
-	    			System.out.println("玩家2选择了【吉尔伽美什】");
-	    			Sound.selected(4);//播放selected语音
-	    			p2choice=4;
-	    		}
-	    		else if(jc2.getSelectedItem()=="库丘林") {
-	    			System.out.println("玩家2选择了【库丘林】");
-	    			Sound.selected(5);//播放selected语音
-	    			p2choice=5;
-	    		}
-	    		else if(jc2.getSelectedItem()=="美杜莎") {
-	    			System.out.println("玩家2选择了【美杜莎】");
-	    			Sound.selected(6);//播放selected语音
-	    			p2choice=6;
-	    		}
+					p2choice=1;
+				}
+				else if(jc2.getSelectedItem()=="阿尔托莉雅") {
+					p2choice=2;
+				}
+				else if(jc2.getSelectedItem()=="赫拉克勒斯") {
+					p2choice=3;
+				}
+				else if(jc2.getSelectedItem()=="吉尔伽美什") {
+					p2choice=4;
+				}
+				else if(jc2.getSelectedItem()=="库丘林") {
+					p2choice=5;
+				}
+				else{
+					p2choice=6;
+				}
+				System.out.println("玩家2选择了【"+jc2.getSelectedItem()+"】");
+				Sound.selected(p2choice);//播放selected语音
 			}
 		});
 		servantConfirm.addActionListener(new ActionListener() {
@@ -163,7 +143,7 @@ public class gameFrame extends JFrame {
 		c.add(jl2);
 		c.add(jc2);
 		c.add(servantConfirm);
-		
+
 		// 把标签的大小位置设置为图片刚好填充整个面板
 		label.setBounds(0, 0, this.getWidth(), this.getHeight());
 		// 把内容窗格转化为JPanel，否则不能用方法setOpaque()来使内容窗格透明
@@ -172,9 +152,9 @@ public class gameFrame extends JFrame {
 		imagePanel.setOpaque(false);
 		// 把背景图片添加到分层窗格的最底层作为背景
 		this.getLayeredPane().add(label, new Integer(Integer.MIN_VALUE));
-		
+
 	}
-	
+
 	/*
 	 * 游戏界面
 	 */
@@ -247,19 +227,19 @@ public class gameFrame extends JFrame {
 		p2.add(south);
 		p2.add(east);
 		roll.setEnabled(false);
-	    attack.setEnabled(false);
-	    north.setEnabled(false);
-	    east.setEnabled(false);
-	    south.setEnabled(false);
-	    west.setEnabled(false);
+		attack.setEnabled(false);
+		north.setEnabled(false);
+		east.setEnabled(false);
+		south.setEnabled(false);
+		west.setEnabled(false);
 		c.add(p1,gbc_1);
 		c.add(p2,gbc_2);
 		setTitle("游戏界面");
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	}
-	
-	
+
+
 	/*
 	 * 刷新游戏界面，在gf内更新当前玩家nowply，在myMap中刷新地图按钮数组
 	 */
@@ -304,55 +284,55 @@ public class gameFrame extends JFrame {
 			}
 		}
 	}
-	
+
 	/*
 	 * 设置两名玩家的从者图标
 	 */
 	private void setServantIcon(JButton a,Player pla) {
 		if(pla.servant==1) {
-			
+
 		}else if(pla.servant==2) {
 			a.setIcon(iconact1);
 		}else if(pla.servant==3) {
-			
+
 		}else if(pla.servant==4) {
-			
+
 		}else if(pla.servant==5) {
-			
+
 		}else if(pla.servant==6) {
-			
+
 		}
-		
+
 		//待补充
-		
-		
+
+
 	}
 
 }
 
 
 class MyComboBox extends AbstractListModel<String> implements ComboBoxModel<String> {
-	
+
 	private static final long serialVersionUID = 1L;
 	String selecteditem = null;
 	String[] test = { "卫宫", "阿尔托莉雅","赫拉克勒斯", "吉尔伽美什","库丘林","美杜莎" };
-	
+
 	public String getElementAt(int index) {
 		return test[index];
 	}
-	
+
 	public int getSize() {
 		return test.length;
 	}
-	
+
 	public void setSelectedItem(Object item) {
 		selecteditem = (String) item;
 	}
-	
+
 	public Object getSelectedItem() {
 		return selecteditem;
 	}
-	
+
 	public int getIndex() {
 		for (int i = 0; i < test.length; i++) {
 			if (test[i].equals(getSelectedItem()))

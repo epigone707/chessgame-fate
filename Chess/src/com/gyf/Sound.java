@@ -17,26 +17,28 @@ public class Sound {
 	 * 播放speak音效
 	 */
 	static public void speak(int servant) {
+		String SERVENT;
 		if(servant==1) {
-
+			SERVENT="emiya";
 		}else if(servant==2) {
-			Random r=new Random();
-			int result=r.nextInt(3);//0,1,2
-			if(result==0) {
-				play(DIR + "actspeak1.wav", false);// 播放一次speak音效
-			}else if(result==1) {
-				play(DIR + "actspeak2.wav", false);// 播放一次speak音效
-			}else {
-				play(DIR + "actspeak3.wav", false);// 播放一次speak音效
-			}
+			SERVENT="act";
 		}else if(servant==3) {
-
+			SERVENT="hercu";
 		}else if(servant==4) {
-
+			SERVENT="gilga";
 		}else if(servant==5) {
-
-		}else if(servant==6) {
-
+			SERVENT="cuchu";
+		}else{
+			SERVENT="medusa";
+		}
+		Random r=new Random();
+		int result=r.nextInt(3);//0,1,2
+		if(result==0) {
+			play(DIR + SERVENT+"speak1.wav", false);// 播放一次speak音效
+		}else if(result==1) {
+			play(DIR + SERVENT+"speak2.wav", false);// 播放一次speak音效
+		}else {
+			play(DIR + SERVENT+"speak3.wav", false);// 播放一次speak音效
 		}
 
 	}
@@ -45,19 +47,21 @@ public class Sound {
 	 * 播放selected音效
 	 */
 	static public void selected(int servant) {
+		String SERVENT;
 		if(servant==1) {
-
+			SERVENT="emiya";
 		}else if(servant==2) {
-			play(DIR + "actselected.wav", false);
+			SERVENT="act";
 		}else if(servant==3) {
-
+			SERVENT="hercu";
 		}else if(servant==4) {
-
+			SERVENT="gilga";
 		}else if(servant==5) {
-
-		}else if(servant==6) {
-
+			SERVENT="cuchu";
+		}else{
+			SERVENT="medusa";
 		}
+		play(DIR + SERVENT +"selected.wav", false);
 	}
 
 	/**
@@ -65,60 +69,64 @@ public class Sound {
 	 */
 	/*
 	static public void hurted(int servant) {
+	String SERVENT;
 		if(servant==1) {
-
+			SERVENT="emiya";
 		}else if(servant==2) {
-			play(DIR + "hurted.wav", false);
+			SERVENT="act";
 		}else if(servant==3) {
-
+			SERVENT="hercu";
 		}else if(servant==4) {
-
+			SERVENT="gilga";
 		}else if(servant==5) {
-
-		}else if(servant==6) {
-
+			SERVENT="cuchu";
+		}else{
+			SERVENT="medusa";
 		}
+		play(DIR + SERVENT +"hurted.wav", false);
 	}
-	*/
+	 */
 
 	/**
 	 * 播放noble音效
 	 */
 	static public void noble(int servant) {
+		String SERVENT;
 		if(servant==1) {
-
+			SERVENT="emiya";
 		}else if(servant==2) {
-			play(DIR + "actnoble.wav", false);
-
+			SERVENT="act";
 		}else if(servant==3) {
-
+			SERVENT="hercu";
 		}else if(servant==4) {
-
+			SERVENT="gilga";
 		}else if(servant==5) {
-
-		}else if(servant==6) {
-
+			SERVENT="cuchu";
+		}else{
+			SERVENT="medusa";
 		}
+		play(DIR + SERVENT +"noble.wav", false);
 	}
 
 	/**
 	 * 播放win音效
 	 */
 	static public void win(int servant) {
+		String SERVENT;
 		if(servant==1) {
-
+			SERVENT="emiya";
 		}else if(servant==2) {
-			play(DIR + "actwin.wav", false);
-
+			SERVENT="act";
 		}else if(servant==3) {
-
+			SERVENT="hercu";
 		}else if(servant==4) {
-
+			SERVENT="gilga";
 		}else if(servant==5) {
-
-		}else if(servant==6) {
-
+			SERVENT="cuchu";
+		}else{
+			SERVENT="medusa";
 		}
+		play(DIR + SERVENT +"win.wav", false);
 	}
 
 
