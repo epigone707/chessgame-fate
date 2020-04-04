@@ -34,11 +34,11 @@ public class Sound {
 		Random r=new Random();
 		int result=r.nextInt(3);//0,1,2
 		if(result==0) {
-			play(DIR + SERVENT+"speak1.wav", false);// 播放一次speak音效
+			play(DIR + SERVENT+"_speak1.wav", false);// 播放speak1音效
 		}else if(result==1) {
-			play(DIR + SERVENT+"speak2.wav", false);// 播放一次speak音效
+			play(DIR + SERVENT+"_speak2.wav", false);// 播放speak2音效
 		}else {
-			play(DIR + SERVENT+"speak3.wav", false);// 播放一次speak音效
+			play(DIR + SERVENT+"_speak3.wav", false);// 播放speak3音效
 		}
 
 	}
@@ -61,14 +61,14 @@ public class Sound {
 		}else{
 			SERVENT="medusa";
 		}
-		play(DIR + SERVENT +"selected.wav", false);
+		play(DIR + SERVENT +"_selected.wav", false);
 	}
 
 	/**
-	 * 播放hurted音效，暂不启用
+	 * 播放lose音效
 	 */
-	/*
-	static public void hurted(int servant) {
+	
+	static public void lose(int servant) {
 	String SERVENT;
 		if(servant==1) {
 			SERVENT="emiya";
@@ -83,9 +83,8 @@ public class Sound {
 		}else{
 			SERVENT="medusa";
 		}
-		play(DIR + SERVENT +"hurted.wav", false);
+		play(DIR + SERVENT +"_lose.wav", false);
 	}
-	 */
 
 	/**
 	 * 播放noble音效
@@ -105,7 +104,7 @@ public class Sound {
 		}else{
 			SERVENT="medusa";
 		}
-		play(DIR + SERVENT +"noble.wav", false);
+		play(DIR + SERVENT +"_noble.wav", false);
 	}
 
 	/**
@@ -126,7 +125,7 @@ public class Sound {
 		}else{
 			SERVENT="medusa";
 		}
-		play(DIR + SERVENT +"win.wav", false);
+		play(DIR + SERVENT +"_win.wav", false);
 	}
 
 
