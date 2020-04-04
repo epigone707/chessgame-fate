@@ -23,13 +23,13 @@ public class Player {
 			positionX=1;
 			positionY=1;
 		}else if(name==2) {
-			positionX=5;
-			positionY=8;
+			positionX=20;
+			positionY=20;
 		}
 		else {
 			System.out.println("初始位置设置错误");
 		}
-		//设置从者攻击距离
+		//设置从者攻击距离&敏捷补正
 		switch (servant){
 		case 1:
 			range=2;
@@ -132,52 +132,53 @@ public class Player {
 	 * 判断玩家北方的相邻格子是否为障碍
 	 */
 	public boolean isNorthObstacle(Map m) {
-		int northX=positionX;//2
-		int northY=positionY-1;//1
-		int num=5*(northY-1)+northX-1;//1
-		if(positionY>1 && num>=0&&num<=39&&m.terrain[num]==0) {
+		int northX=positionX;
+		int northY=positionY-1;
+		int num=Map.getNum(northX, northY);
+		if(positionY>1 && num>=0 && num<400 && m.terrain[num]==0) {
 			return false;
 		}else {
 			return true;
 		}
 	}
+	
 	/*
 	 * 判断玩家东方的相邻格子是否为障碍
 	 */
 	public boolean isEastObstacle(Map m) {
 		int eastX=positionX+1;
 		int eastY=positionY;
-		int num=5*(eastY-1)+eastX-1; 
-		if(positionX<5 && num>=0 && num<=39 && m.terrain[num]==0) {
+		int num=Map.getNum(eastX, eastY);
+		if(positionX<20 && num>=0 && num<400 && m.terrain[num]==0) {
 			return false;
 		}else {
 			return true;
 		}
 	}
+	
 	/*
 	 * 判断玩家南方的相邻格子是否为障碍
 	 */
 	public boolean isSouthObstacle(Map m) {
-		//System.out.println("X:"+getPositionX()+"Y:"+getPositionY());
-		int southX=positionX;//1
-		int southY=positionY+1;//2
-		int num=5*(southY-1)+southX-1;//5
-		//System.out.println(num);
-		if(positionY<8 && (num>=0) && (num<=39) && (m.terrain[num]==0)) {
+		int southX=positionX;
+		int southY=positionY+1;
+		int num=Map.getNum(southX, southY);
+		if(positionY<20 && num>=0 && num<400 && m.terrain[num]==0) {
 			return false;
 		}else {
 			
 			return true;
 		}
 	}
+	
 	/*
 	 * 判断玩家西方的相邻格子是否为障碍
 	 */
 	public boolean isWestObstacle(Map m) {
-		int westX=positionX-1;//0
-		int westY=positionY;//8
-		int num=5*(westY-1)+westX-1;//34
-		if(positionX>1 && num>=0 && num<=39 && m.terrain[num]==0) {
+		int westX=positionX-1;
+		int westY=positionY;
+		int num=Map.getNum(westX, westY);
+		if(positionX>1 && num>=0 && num<400 && m.terrain[num]==0) {
 			return false;
 		}else {
 			return true;
@@ -197,7 +198,6 @@ public class Player {
 		}else if(direction==4) {
 			positionX--;//向西
 		}
-		//System.out.println(this.name+"当前的x坐标："+positionX+" Y坐标："+positionY);
 		moveNumber--;//玩家行动点数-1
 	}
 

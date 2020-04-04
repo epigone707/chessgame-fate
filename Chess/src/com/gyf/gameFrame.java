@@ -2,6 +2,7 @@ package com.gyf;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 
 import javax.swing.*;
 
@@ -13,7 +14,7 @@ public class gameFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = 1626493072817436258L;
 	public JPanel panel_1,panel_2;
-	public JButton[] mapButton=new JButton[40];
+	public JButton[] mapButton=new JButton[400];
 	public JButton roll;
 	public JButton attack;
 	public JButton north;
@@ -21,7 +22,6 @@ public class gameFrame extends JFrame {
 	public JButton south;
 	public JButton west;
 	public JButton servantConfirm;
-	public Player nowply;
 	public boolean isRoll=false;
 	public boolean isAttack=false;
 	public boolean isNorth=false;
@@ -29,13 +29,9 @@ public class gameFrame extends JFrame {
 	public boolean isSouth=false;
 	public boolean isWest=false;
 	public boolean isServantConfirm=false;
-	public static Icon iconroll = new ImageIcon("image/roll.png");
-	public static Icon iconattack = new ImageIcon("image/attack.png");
-	public static Icon iconact1 = new ImageIcon("image/act1.png");
-	public static Icon iconbackground = new ImageIcon("image/background.png");
-	JLabel label = new JLabel(iconbackground);// 把背景图片显示在一个标签里面
-	JComboBox<String> jc1 = new JComboBox<>(new MyComboBox());
-	JComboBox<String> jc2 = new JComboBox<>(new MyComboBox());
+	public static Icon icon_act1 = new ImageIcon("image/act1.png");
+	public static Icon icon_background = new ImageIcon("image/background.png");
+	JLabel label = new JLabel(icon_background);// 把背景图片显示在一个标签里面
 	public int p1choice=1;
 	public int p2choice=2;
 
@@ -75,6 +71,8 @@ public class gameFrame extends JFrame {
 		JLabel jl1 = new JLabel("玩家1请选择从者:");
 		JLabel jl2 = new JLabel("玩家2请选择从者:");
 		servantConfirm=new JButton("确认从者选择");
+		JComboBox<String> jc1 = new JComboBox<>(new MyComboBox());
+		JComboBox<String> jc2 = new JComboBox<>(new MyComboBox());
 		jc1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(jc1.getSelectedItem()=="卫宫") {
@@ -128,25 +126,27 @@ public class gameFrame extends JFrame {
 				isServantConfirm=true;
 			}
 		});
-		setBounds(400,200,800,500);//参数为x,y,width,height
+		setBounds(400,200,800,500);//设置窗体位置，参数为x,y,width,height
 		setVisible(true);
 		setTitle("角色选择");
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		//使用绝对布局
 		c.setLayout(null);
-		jl1.setBounds(300, 200, 100, 30);//参数为x,y,width,height
+		//设置组件的位置，参数为x,y,width,height
+		jl1.setBounds(300, 200, 100, 30);
 		jc1.setBounds(400, 200, 100, 30);
 		jl2.setBounds(300, 250, 100, 30);
 		jc2.setBounds(400, 250, 100, 30);
 		servantConfirm.setBounds(300, 350, 200, 30);
+		//添加组件
 		c.add(jl1);
 		c.add(jc1);
 		c.add(jl2);
 		c.add(jc2);
 		c.add(servantConfirm);
-
-		// 把标签的大小位置设置为图片刚好填充整个面板
+		//把标签的大小位置设置为图片刚好填充整个面板
 		label.setBounds(0, 0, this.getWidth(), this.getHeight());
-		// 把内容窗格转化为JPanel，否则不能用方法setOpaque()来使内容窗格透明
+		//把内容窗格转化为JPanel，否则不能用方法setOpaque()来使内容窗格透明
 		JPanel imagePanel = (JPanel) this.getContentPane();
 		//使内容窗格透明
 		imagePanel.setOpaque(false);
@@ -160,33 +160,24 @@ public class gameFrame extends JFrame {
 	 */
 	public void gamePlayPane() {
 		Container c=getContentPane();
-		setBounds(400,50,900,700);//参数为x,y,width,height
+		setBounds(400,50,1100,700);//设置窗体位置，参数为x,y,width,height
 		label.setBounds(0, 0, this.getWidth(), this.getHeight());
-		c.setLayout(new GridBagLayout());
-		final GridBagConstraints gbc_1=new GridBagConstraints();//面板1=地图
-		gbc_1.gridy=0;
-		gbc_1.gridx=0;
-		gbc_1.weightx=90;
-		//gbc_1.fill=GridBagConstraints.BOTH;
-		final GridBagConstraints gbc_2=new GridBagConstraints();//面板2=按键区
-		gbc_2.gridy=0;
-		gbc_2.gridx=1;
-		gbc_2.weightx=10;
-		gbc_2.insets = new Insets(0, 5, 0, 0);
-		gbc_2.fill=GridBagConstraints.BOTH;
-		JPanel p1=new JPanel(new GridLayout(8,5,1,1));
-		for(int i=0;i<40;i++) {
-			mapButton[i]=new JButton(String.valueOf(i));
-			mapButton[i].setPreferredSize(new Dimension(100, 100));//按钮的大小
+		JPanel p1=new JPanel(new GridLayout(20,20,0,0));//面板1=地图区
+		JPanel p2=new JPanel(new GridLayout(2,3,0,0));//面板2=按键区
+		c.setLayout(null);
+		//设置面板位置，参数为x,y,width,height
+		p1.setBounds(30,30,700,600);
+		p2.setBounds(800,500,150,100);
+		for(int i=0;i<400;i++) {
+			mapButton[i]=new JButton();
 			p1.add(mapButton[i]);//将按钮添加到面板1
 		}
-		JPanel p2=new JPanel();
-		roll=new JButton("roll");
-		attack=new JButton("attack!");
-		north=new JButton("向北移动");
-		east=new JButton("向东移动");
-		south=new JButton("向南移动");
-		west=new JButton("向西移动");
+		roll=new JButton();
+		attack=new JButton();
+		north=new JButton("W");
+		east=new JButton("D");
+		south=new JButton("S");
+		west=new JButton("A");
 		roll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				isRoll=true;
@@ -217,9 +208,8 @@ public class gameFrame extends JFrame {
 				isWest=true;
 			}
 		});
-		p2.setLayout(new GridLayout(2,3,5,5));
-		roll.setIcon(iconroll);
-		attack.setIcon(iconattack);
+		roll.setIcon(resizeIcon(new ImageIcon("image/roll.png")));
+		attack.setIcon(resizeIcon(new ImageIcon("image/attack.png")));
 		p2.add(roll);
 		p2.add(north);
 		p2.add(attack);
@@ -232,11 +222,17 @@ public class gameFrame extends JFrame {
 		east.setEnabled(false);
 		south.setEnabled(false);
 		west.setEnabled(false);
-		c.add(p1,gbc_1);
-		c.add(p2,gbc_2);
+		c.add(p1);
+		c.add(p2);
 		setTitle("游戏界面");
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+	}
+
+
+	private Image getImage(Icon icon_roll2) {
+		// TODO 自动生成的方法存根
+		return null;
 	}
 
 
@@ -244,27 +240,18 @@ public class gameFrame extends JFrame {
 	 * 刷新游戏界面，在gf内更新当前玩家nowply，在myMap中刷新地图按钮数组
 	 */
 	public void refrFrame(Player now,Player p1, Player p2, Map m) {
-		if (m.chooseMap==1) {
-			for(int i=0;i<40;i++) {
-				m.terrain[i]=m.MAP_1[i];
-			}
-		}else if(m.chooseMap==2) {
-			for(int i=0;i<40;i++) {
-				m.terrain[i]=m.MAP_2[i];
-			}
+		for(int i=0;i<400;i++) {
+			m.terrain[i]=m.MAP_1[i];
 		}
 		int x1=p1.getPositionX();
 		int y1=p1.getPositionY();
-		int num1=5*(y1-1)+x1-1;
-		//System.out.println("x1:"+x1+"y1:"+y1+"num1"+num1);
+		int num1=Map.getNum(x1, y1);//获得按钮编号
 		m.terrain[num1]=(p1.name);//在地图按钮数组上更新p1位置
 		int x2=p2.getPositionX();
 		int y2=p2.getPositionY();
-		int num2=5*(y2-1)+x2-1;
-		//System.out.println("x2:"+x2+"y2:"+y2+"num2"+num2);
+		int num2=Map.getNum(x2, y2);//获得按钮编号
 		m.terrain[num2]=(p2.name);//在地图按钮数组上更新p2位置
-		nowply=now; //在gf内更新当前玩家
-		for(int i=0;i<40;i++) {
+		for(int i=0;i<400;i++) {
 			if(m.terrain[i]==-1) {
 				//黑色为障碍格,-1
 				mapButton[i].setIcon(null);
@@ -279,10 +266,11 @@ public class gameFrame extends JFrame {
 				setServantIcon(mapButton[i],p1);
 			}else if(m.terrain[i]==2) {
 				//红色为p2,2
-				setServantIcon(mapButton[i],p2);
 				mapButton[i].setBackground(Color.RED);
+				setServantIcon(mapButton[i],p2);
 			}
 		}
+		//等待添加：当前玩家now的方格会拥有额外标识
 	}
 
 	/*
@@ -292,7 +280,7 @@ public class gameFrame extends JFrame {
 		if(pla.servant==1) {
 
 		}else if(pla.servant==2) {
-			a.setIcon(iconact1);
+			a.setIcon(icon_act1);
 		}else if(pla.servant==3) {
 
 		}else if(pla.servant==4) {
@@ -306,6 +294,18 @@ public class gameFrame extends JFrame {
 		//待补充
 
 
+	}
+	
+	/*
+	 * 调整图标大小
+	 */
+	private ImageIcon resizeIcon(ImageIcon icon) {
+		Image img = icon.getImage(); 
+		BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB); 
+		Graphics g = bi.createGraphics(); 
+		g.drawImage(img, 10, 10, 60, 60, null); 
+		ImageIcon newicon = new ImageIcon(bi);
+		return newicon;
 	}
 
 }

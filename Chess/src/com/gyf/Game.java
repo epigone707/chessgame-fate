@@ -61,7 +61,6 @@ public class Game {
 	 * 玩家的小回合
 	 */
 	public void playerTurn(Player pl) {
-		//System.out.println("X:"+p1.getPositionX()+"Y:"+p1.getPositionY());
 		System.out.println("玩家"+pl.name+"的小回合开始");//开始当前玩家的小回合
 		Sound.speak(pl.servant);//播放speak语音
 		gf.roll.setEnabled(true);//将roll按钮设置为可选
@@ -83,7 +82,6 @@ public class Game {
 		
 		//等待玩家按下四个移动按钮
 		while(pl.moveNumber>0) {
-			//System.out.println("X:"+p1.getPositionX()+"Y:"+p1.getPositionY());
 			System.out.println("玩家"+pl.name+"的行动点数为"+pl.moveNumber);
 			//判断玩家东西南北的四个相邻方格是否为可行格，将对应的移动按钮设置为可选
 			if(pl.isNorthObstacle(myMap)==false) {
@@ -98,7 +96,6 @@ public class Game {
 			if(pl.isWestObstacle(myMap)==false) {
 				gf.west.setEnabled(true);
 			}
-			//System.out.println("X:"+p1.getPositionX()+"Y:"+p1.getPositionY());
 			//等待玩家按下移动按钮
 			while(true) {
 				if(gf.isNorth) {
